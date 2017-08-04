@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display淡入淡出过渡效果</title>
+    <style>
+        div {
+            position: relative;
+        }
+        input {/*按钮样式*/
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: #34BC9D;
+            color: #fff;
+            height: 40px;
+        }
+        img {
+            position: absolute;
+            transition: 1s;
+            left: 0;
+            top: 100%;
+            opacity: 0;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input id="root" type="button" onclick="show()" value="点击显示图片">
+        <img id="img" src="appleLogo.jpg" alt="">
+    </div>
+<script>
+    var root = document.getElementById("root");
+    var img = document.getElementById("img");
+    function show(){
+        if(root.value === "点击显示图片"){
+            root.value = "点击隐藏图片";
+            /*设置setTimeout，让display先执行，opacity后执行*/
+            img.style.display = "block";
+            setTimeout(function () {
+                img.style.opacity = 1;
+            },.1);
+        }else{
+            root.value = "点击显示图片";
+            img.style.opacity = 0;
+            /*隐藏需要先执行opacity，再执行display，否则无效*/
+            setTimeout(function () {
+                img.style.display = "none";
+            },900);
+        }
+    }
+</script>
+</body>
+</html>
